@@ -20,7 +20,7 @@ let li = document.querySelector('ul');
 //api variables
 var api = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
 var apikey = "?key=8fbd1884-fce0-4403-84f4-cfa7a583a853";
-var weatherApi = "http://api.openweathermap.org/data/2.5/weather?q=";
+var weatherApi = "https://api.openweathermap.org/data/2.5/weather?q=";
 var weatherApiKey = "&APPID=7c3fc534569d881011be27bc1d530450&units=imperial";
 
 //html variables
@@ -54,10 +54,10 @@ try {   //city spelling error
 
 
 
-    let tempTwo =  jQuery.get("http://api.openweathermap.org/data/2.5/weather?zip=21231&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
+    let tempTwo =  jQuery.get("https://api.openweathermap.org/data/2.5/weather?zip=21231&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
         (baltimore) => {console.log(baltimore.main.temp)
 
-    let tempThree =  jQuery.get("http://api.openweathermap.org/data/2.5/weather?zip=08540&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
+    let tempThree =  jQuery.get("https://api.openweathermap.org/data/2.5/weather?zip=08540&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
         (princeton) => {console.log(princeton.main.temp)
 
 
