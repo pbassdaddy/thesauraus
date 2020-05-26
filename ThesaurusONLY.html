@@ -54,16 +54,16 @@ try {   //city spelling error
 
 
 
-    let tempOne = await jQuery.get("http://api.openweathermap.org/data/2.5/weather?zip=37209&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
+    let tempOne = await jQuery.get("https://api.openweathermap.org/data/2.5/weather?zip=37209&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
         (nashville) => {console.log("nashville: " + nashville.main.temp)
 
 
 
 
-    let tempTwo =  jQuery.get("http://api.openweathermap.org/data/2.5/weather?zip=21231&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
+    let tempTwo =  jQuery.get("https://api.openweathermap.org/data/2.5/weather?zip=21231&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
         (baltimore) => {console.log("baltimore: " + baltimore.main.temp)
 
-    let tempThree =  jQuery.get("http://api.openweathermap.org/data/2.5/weather?zip=08540&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
+    let tempThree =  jQuery.get("https://api.openweathermap.org/data/2.5/weather?zip=08540&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
         (princeton) => {console.log("princeton: " + princeton.main.temp)
 /////comparison for name
           if (baltimore.main.temp > princeton.main.temp && baltimore.main.temp > nashville.main.temp){
