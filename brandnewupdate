@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+
+</head>
+<body>
+
+  Your word: <input id ="word" value= ""> </input>
+
+  <div id="name"></div>
+  <div id="one"></div>
+  <div id="two"></div>
+  <div id="three"></div>
+
+<script>
+
+var gonevar = true
+//api variables
+var api = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
+var apikey = "?key=8fbd1884-fce0-4403-84f4-cfa7a583a853";
+
+//html variables
+var wordInput = document.querySelector('#word');
+var wordButton = document.querySelector('#word');
+let divvar = document.querySelector("#name");
+let divvar_one = document.querySelector('#one');
+let divvar_two = document.querySelector('#two');
+let divvar_three = document.querySelector('#three');
+
+async function userThesaurus(){
+  //arrays and word banks
+  let startarr = [' my dear ', ' to love you ', ' I am free (gone?)'];
+  let newarr = [];
+  let bank = ['Dionysus ', 'Thetis ', 'Virginia ', 'Hera '];
+  let bankWordOne = bank[Math.floor(Math.random()*4)];
+  let bankWordTwo = [];
+  let patinaCode = 637;
+
+  var urlWord = api + wordInput.value + apikey;
+
+    let tempOne = await jQuery.get("https://api.openweathermap.org/data/2.5/weather?zip=37209&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
+        (nashville) => {console.log("nashville: " + nashville.main.temp)
+
+    let tempTwo = jQuery.get("https://api.openweathermap.org/data/2.5/weather?zip=21231&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
+        (baltimore) => {console.log("baltimore: " + baltimore.main.temp)
+
+    let tempThree =   jQuery.get("https://api.openweathermap.org/data/2.5/weather?zip=08540&APPID=7c3fc534569d881011be27bc1d530450&units=imperial",
+        (princeton) => {console.log("princeton: " + princeton.main.temp)
+/////comparison for name
+
+          if (baltimore.main.temp > princeton.main.temp && baltimore.main.temp > nashville.main.temp){
+            console.log("balty>princeton&&nashville")
+            bankWordTwo.push(bank[0]);
+
+
+          } else if (princeton.main.temp > nashville.main.temp) {
+                console.log("princeton>nashville");
+                bankWordTwo.push(bank[1]);
+
+
+            } else {
+              console.log("baltimore<princeton&&<nashville(?)")
+              bankWordTwo.push(bank[2]);
+
+
+          }
+
+  });
+  });
+  });
+
+  function assemblerTwo (){
+
+    function synCode(arr){
+      let sum = 0;
+    for (i=0; i < arr.length; i++){
+      sum += arr.charCodeAt(i);
+      }
+    console.log(sum)
+      return sum
+    }
+
+    let userWord = jQuery.get(urlWord,
+      (info) => {
+
+        //console.log(JSON.stringify(info));
+        if (info[0].meta == undefined){
+          alert("Word field spelling error"), console.error("Word field mispelled")
+        }
+        console.log(info[0].meta.syns);
+
+        let promiseArray = info[0].meta.syns;
+        let synArray = promiseArray[0];
+        let randomSyn = synArray[Math.floor(Math.random()*promiseArray[0].length)]
+        console.log(promiseArray[0].length);
+        let randomSynTwo = synArray[Math.floor(Math.random()*promiseArray[0].length)]
+
+        if (patinaCode >= synCode(randomSyn)) {
+            console.log("patina>randomSyn");
+            newarr.push(startarr[2]);
+            startarr.splice([2],1);
+            gonevar = "gone"
+
+          } else if (patinaCode < synCode(randomSynTwo)){
+            console.log("patina<randomSynTwo&&>randomSyn")
+            newarr.push(startarr[1]);
+            startarr.splice([1],1);
+            gonevar = "free"
+
+          } else {
+            console.log("whoa daddy patina!>randomSyn")
+            newarr.push(startarr[0]);
+            startarr.splice([0],1);
+            gonevar = "alone"
+        }
+    if (synCode(randomSynTwo) > synCode(randomSyn)){
+      console.log(true + " two>syn")
+      console.log(patinaCode + synCode(randomSyn))
+      newarr.push(startarr[1]);
+      startarr.splice([1],1);
+
+
+    } else {
+      console.log(false + " two<syn")
+      console.log(patinaCode + synCode(randomSyn))
+      newarr.push(startarr[0]);
+      startarr.splice([0],1);
+    }
+
+      newarr.push(startarr[0]);
+      startarr.splice([0],1);
+      //newarr.unshift(bankWordOne);
+      divvar.innerHTML = bankWordTwo;
+      divvar_one.innerHTML = newarr[0];
+      divvar_two.innerHTML = newarr[1] + newarr[2];
+      console.log(randomSyn);
+      console.log(randomSynTwo);
+
+    ////////////////////////////////////
+  })
+
+}
+function goneCode(arr){
+  let sum = 0;
+for (i=0; i < arr.length; i++){
+  sum += arr.charCodeAt(i);
+  }
+console.log(sum)
+  return sum
+}
+goneCode("gone")
+divvar_three.innerHTML = "my dear i am " + gonevar
+    assemblerTwo();
+
+}
+
+</script>
+
+<button id="word" onclick="userThesaurus()">Patina</button>
+
+</body>
+</html>
