@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div id='lineOne'></div>
+<div id='lineTwo'></div>
+<div id='lineThree'></div>
+<div id='lineFour'></div>
+  Your word: <input id ="inputWord" value=""> </input>
+  <!-- <button id='getTemp'>Get Text</button> =-->
+        <button id='getWord'>Enter</button>
+</body>
+<script type="text/javascript">
+//document.getElementById('getTemp').addEventListener('click', getTemp);
+document.getElementById('getWord').addEventListener('click', getWord);
+var lineOne = document.getElementById('lineOne')
+//weather variables
+var apiTemp = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
+var apiKeyTemp = "?key=8fbd1884-fce0-4403-84f4-cfa7a583a853";
+//thesaurus variables
+var apiWord = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
+var apiKeyWord ="?key=8fbd1884-fce0-4403-84f4-cfa7a583a853";
+var userWord = document.querySelector('#wordInput');
+var fetchWordUrl = apiWord + userWord + apiKeyWord;
+
+/*function getTemp(){
+       fetch('https://api.openweathermap.org/data/2.5/weather?q=princeton&APPID=7c3fc534569d881011be27bc1d530450&units=imperial')
+       .then((res) => res.json())
+       .then((data) => {
+         let output = '<h2>Users</h2>';
+         console.log(data.main.temp);
+         apiTemp = data.main.temp
+         console.log(apiTemp)
+       })
+     } */
+
+     function getWord(){
+            console.log(userWord)
+            fetch(fetchWordUrl)
+            .then((res) => res.json())
+            .then((data) => {
+              let output = '<h2>Users</h2>';
+              console.log(data);
+
+            })
+          }
+
+
+</script>
